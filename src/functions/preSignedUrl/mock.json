@@ -2,5 +2,5 @@
   "headers": {
     "Content-Type": "application/json"
   },
-  "body": "{\"fileName\": \"sample_image.png\"}"
+  "body": "{\"fileName\": \"sample.png\"}"
 }

@@ -1,6 +1,35 @@
 {
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\"name\": \"Frederic\"}"
+  "event": {
+    "Records": [
+      {
+        "eventVersion": "2.1",
+        "eventSource": "aws:s3",
+        "awsRegion": "us-east-1",
+        "eventTime": "2021-06-01T02:28:55.801Z",
+        "eventName": "ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "AWS:AROAUVQ7WREF7DBS77CU7:s3-image-upload-serverless-sample-dev-preSignedUrl"
+        },
+        "requestParameters": {
+          "sourceIPAddress": "8.8.8.8"
+        },
+        "responseElements": {
+          "x-amz-request-id": "78GSHP7RKYF2QYQE",
+          "x-amz-id-2": "PmzpmsiPKvm/iiWdMI3Kulc28rLvviYDyrDfvSKI3W+Gw4WyI+Vo+PNExAHGhqndbHAC8j+8kyP3EhtXYUjvSbfYUHBzoGwR"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "s3-image-upload-serverless-sample-dev-extractMetadata-4ed9d072083fcda53a78babd2ed24e73",
+          "bucket": {
+            "arn": "",
+            "bucket": "sample-bucket"
+          },
+          "object": {
+            "eTag": "",
+            "key": "file/path"
+          }
+        }
+      }
+    ]
+  }
 }
