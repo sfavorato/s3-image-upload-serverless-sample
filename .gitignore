@@ -1,3 +1,6 @@
 node_modules/*
 nodejs/*
 nodejs.zip
+.serverless
+imageMagick
+sample.png
