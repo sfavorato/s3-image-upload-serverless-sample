@@ -14,7 +14,7 @@ export default {
       Resource: [env.bucketArn, `${env.bucketArn}/*`]
     }
   ],
-  layers: ["${cf:s3-image-upload-serverless-sample-dev.ImageMagickLayerExport}"],
+  layers: ["arn:aws:lambda:us-east-1:321115293963:layer:image-magick:1"],
   events: [
     {
       s3: {

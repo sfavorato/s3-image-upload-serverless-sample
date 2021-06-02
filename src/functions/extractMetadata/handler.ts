@@ -4,45 +4,49 @@ import { middyfy } from '@libs/lambda';
 import { S3Handler } from 'aws-lambda';
 import { S3 } from 'aws-sdk';
 
-import * as magick from 'imagemagick';
+import { subClass } from 'gm';
 import { env } from 'src/environment/environment';
 
-const magickIdentify = (path: string): Promise<any> => {
+const magickIdentify = (file: Buffer): Promise<any> => {
+  const gm = subClass({ imageMagick: true });
   return new Promise((resolve, reject) => {
-    magick.identify(path, (err, features) => {
+    gm(file).identify({ bufferStream: true }, (err, value) => {
       if (err) {
         reject(err);
       }
-      resolve(features);
-    })
+      resolve(value);
+    });
   })
 }
-
-// {
-//   "AcceptRanges": "bytes",
-//   "LastModified": "2021-06-01T02: 59: 22.000Z",
-//   "ContentLength": 83279,
-//   "ETag": "b32a656d5008e8ac50c798d5fbe0a4bc",
-//   "ContentType": "binary/octet-stream",
-//   "Metadata": {},
-//   "Body": "<Buffer 89 50 4e 47 0d 0a 1a 0a >"
-// }
 
 const extractMetadata: S3Handler = async (event) => {
   const bucketInfo = event.Records[0].s3.bucket;
   const objectInfo = event.Records[0].s3.object;
   const s3 = new S3({ region: env.region })
 
-  const params: S3.GetObjectRequest = {
+  const getObjectParams: S3.GetObjectRequest = {
     Bucket: bucketInfo.name,
     Key: objectInfo.key
   }
 
-  const object = await s3.getObject(params).promise();
+  const object = await s3.getObject(getObjectParams).promise();
 
   try {
-    const result = await magickIdentify(object.Body.toString('utf-8'));
-    console.log(result);
+    const result = await magickIdentify(object.Body as Buffer);
+
+    const paths = objectInfo.key.split('/');
+    const savePath = `${paths[0]}/${paths[1]}/metadata.json`
+
+    const putObjectParams: S3.PutObjectRequest = {
+      Bucket: bucketInfo.name,
+      Key: savePath,
+      Body: Buffer.from(JSON.stringify(result)),
+      ContentType: 'application/json'
+    }
+
+    const response = await s3.putObject(putObjectParams).promise();
+
+    console.log(response);
   } catch (err) {
     console.log(err);
   }

@@ -9,12 +9,6 @@ import { env } from 'src/environment/environment';
 const serverlessConfiguration: AWS = {
   service: 's3-image-upload-serverless-sample',
   frameworkVersion: '2',
-  layers: {
-    imageMagick: {
-      path: "./imageMagick",
-      compatibleRuntimes: ["provided"]
-    }
-  },
   custom: {
     webpack: {
       webpackConfig: './webpack.config.js',

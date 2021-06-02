@@ -2,5 +2,5 @@ node_modules/*
 nodejs/*
 nodejs.zip
 .serverless
-imageMagick
+.webpack/**
 sample.png

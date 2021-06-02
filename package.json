@@ -5,8 +5,8 @@
   "main": "serverless.ts",
   "scripts": {
     "test": "jest",
-    "zip:layer": "rm -rf nodejs && mkdir nodejs && cp package.json nodejs/ && cp package-lock.json nodejs/ && cd nodejs && npm i --production",
-    "deploy": "sls deploy"
+    "deploy": "sls deploy",
+    "invoke": "sls invoke"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -15,15 +15,17 @@
     "@middy/core": "^1.5.2",
     "@middy/http-json-body-parser": "^1.5.2",
     "aws-sdk": "^2.918.0",
-    "imagemagick": "^0.1.3",
+    "gm": "^1.23.1",
     "source-map-support": "^0.5.19",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@serverless/typescript": "^2.23.0",
     "@types/aws-lambda": "^8.10.71",
+    "@types/gm": "^1.18.9",
     "@types/jest": "^26.0.23",
     "@types/node": "^14.14.25",
+    "@types/uuid": "^8.3.0",
     "jest": "^27.0.3",
     "json-schema-to-ts": "^1.5.0",
     "serverless": "^2.23.0",

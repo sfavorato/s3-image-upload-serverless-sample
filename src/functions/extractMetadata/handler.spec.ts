@@ -21,7 +21,7 @@ jest.mock('aws-sdk', () => {
 describe("ExtractMetadata", () => {
   it("Should return object metadata", () => {
 
-
+    // main({ mock }, {} as any, () => { });
     expect(true).toBeTruthy();
   })
 })
