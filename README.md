@@ -18,7 +18,7 @@ Lambda Layer configuration for **node_modules** is not set, since the lastest ve
 Function *hello* is set as an example for syntax and Lambda configuration with no authentication required
 
 ## Setup
----
+
 ### System Requirements
 - [NodeJs version 14.x](https://nodejs.org/dist/v14.17.0/node-v14.17.0-x64.msi)
 - [AWS CLI v2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
